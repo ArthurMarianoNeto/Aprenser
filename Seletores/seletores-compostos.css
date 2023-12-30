@@ -1,7 +1,10 @@
 article{
-    outline: 4px solid green
-    ;
+    outline: 4px solid green;
 }
 article a{
     color: red;
+}
+
+article a > b {
+    color: green;
 }
