@@ -15,22 +15,12 @@
       height: 100vh;
     }
 
-    .login-container {
+    .product-form {
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       width: 300px;
-    }
-
-    .login-header {
-      background-color: #3498db;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-    }
-
-    .login-form {
       padding: 20px;
     }
 
@@ -59,58 +49,55 @@
       cursor: pointer;
       width: 100%;
     }
-
-    .error-message {
-      color: red;
-      margin-top: 5px;
-    }
   </style>
-  <title>Login</title>
+  <title>Cadastro de Produto</title>
 </head>
 <body>
 
-  <div class="login-container">
-    <div class="login-header">
-      <h2>Login</h2>
+  <div class="product-form">
+    <h2>Cadastro de Produto</h2>
+    <div class="form-group">
+      <label for="description">Descrição:</label>
+      <input type="text" id="description" name="description" required>
     </div>
-    <div class="login-form">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-      </div>
-      <div class="form-group">
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required>
-        <p class="error-message" id="age-error"></p>
-      </div>
-      <div class="form-group">
-        <button type="submit" onclick="validateAge()">Login</button>
-      </div>
+    <div class="form-group">
+      <label for="code">Código:</label>
+      <input type="text" id="code" name="code" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Preço:</label>
+      <input type="number" id="price" name="price" min="0" step="0.01" required>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantidade:</label>
+      <input type="number" id="quantity" name="quantity" min="0" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" onclick="submitForm()">Cadastrar Produto</button>
     </div>
   </div>
 
   <script>
-    function validateAge() {
-      var dobInput = document.getElementById('dob');
-      var ageError = document.getElementById('age-error');
-      var currentDate = new Date();
-      var inputDate = new Date(dobInput.value);
+    function submitForm() {
+      var description = document.getElementById('description').value;
+      var code = document.getElementById('code').value;
+      var price = document.getElementById('price').value;
+      var quantity = document.getElementById('quantity').value;
 
-      var age = currentDate.getFullYear() - inputDate.getFullYear();
+      // Você pode adicionar aqui a lógica para processar os dados do formulário
+      // Por exemplo, enviar os dados para um servidor ou armazenar localmente.
 
-      if (currentDate.getMonth() < inputDate.getMonth() || 
-          (currentDate.getMonth() === inputDate.getMonth() && currentDate.getDate() < inputDate.getDate())) {
-        age--;
-      }
+      // Exibindo os dados temporariamente no console para demonstração
+      console.log('Descrição:', description);
+      console.log('Código:', code);
+      console.log('Preço:', price);
+      console.log('Quantidade:', quantity);
 
-      if (age < 18) {
-        ageError.textContent = 'You must be 18 years or older.';
-      } else {
-        ageError.textContent = '';
-        // Coloque aqui a lógica para prosseguir com o login se a idade for válida
-        // Por exemplo, você pode redirecionar para outra página ou realizar a autenticação.
-        console.log('Login successful!');
-      }
+      // Limpar o formulário após o envio
+      document.getElementById('description').value = '';
+      document.getElementById('code').value = '';
+      document.getElementById('price').value = '';
+      document.getElementById('quantity').value = '';
     }
   </script>
 
